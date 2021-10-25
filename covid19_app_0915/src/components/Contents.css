@@ -1,0 +1,17 @@
+.contents {
+    font-family: 'Black Han Sans', sans-serif;
+}
+
+
+.Bargraph{
+    position :fixed;
+}
+
+.Linegraph{
+    position :absolute;
+
+}
+
+.Doughnutgraph{
+    position :fixed;
+}

@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+
+
+.Join__container {
+    background-color: rgb(255, 254, 254);
+    font-family: 'Noto Sans KR', sans-serif;
+    border: 20px solid lightblue;
+    padding : 5px 20px;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 600px;
+    height: 450px;
+    margin-left: 220px;
+    margin-top: 170px;
+    display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+   
+  }
+
+.Join_name {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 25px;
+  
+  padding-bottom: 5px;
+  
+}
+
+.Join_member {
+  font-size: 20px;
+
+}
+
+.btn_Join {
+
+  text-align: center;
+}
+
+.Join_icon{
+  margin-bottom: 5px;
+}

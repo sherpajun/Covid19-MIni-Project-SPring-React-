@@ -1,0 +1,22 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+
+.header01 {
+    text-align: center;
+    margin: 0 auto;
+    padding:10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.login01{
+    margin-top: 10px;
+    margin-right: 10px;
+    font-weight: bolder;
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.btn_btn-default{
+    margin-top: -5px;
+}

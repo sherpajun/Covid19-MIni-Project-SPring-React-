@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+	<mapper namespace="com.example.web.dao.BoardDAO">
+	
+	<select id="boardList2over"  parameterType="int" resultType="board">
+<![CDATA[
+	SELECT level,articleNO,parentNO,LPAD(' ', 4*(LEVEL-1)) || title title,content,writeDate,imageFileName,id 
+	FROM
+	  (
+	  SELECT SEQ, articleNO,parentNO, title,content,writeDate,imageFileName,id 
+	  FROM
+	  (
+	    SELECT ROWNUM AS SEQ, articleNO,parentNO, title,content,writeDate,imageFileName,id
+	    FROM
+	      (
+	        SELECT title,id,imageFileName,writeDate,content,parentNO,articleNO
+	        FROM BOARD
+	        ORDER BY articleNO DESC
+	      )
+	  )
+	    WHERE SEQ >= #{startNo} -- START NO
+	    )
+	WHERE ROWNUM <= 10 -- COUNT
+	start with parentNO=0
+	connect by prior articleNO=parentNO
+	order siblings by articleNO desc
+
+]]>
+	</select>
+	
+	
+	<select id="boardList1" resultType="board">
+	<![CDATA[
+select level,articleNO,parentNO,LPAD(' ', 4*(LEVEL-1)) || title title,content,writeDate,imageFileName,id
+			from (
+			SELECT 
+			* 
+			FROM 
+			board 
+			ORDER BY articleNO DESC
+			)WHERE ROWNUM <= 3
+			start with parentNO=0
+			connect by prior articleNO=parentNO
+order siblings by articleNO desc
+		]]>
+	</select>
+	
+	<select id="boardCount" resultType="int">
+	<![CDATA[
+		select count(*) from board
+		]]>
+	</select>
+	
+
+		<insert id="boardWrite" parameterType="board">
+			insert into board(title,content,id,writeDate,parentNO) 
+			values(#{title}, #{content}, #{id}, SYSDATE, #{parentNO}) 
+		</insert>
+		
+<select id="boardList" resultType="board">
+		<![CDATA[
+			select level,
+				articleNO,
+				parentNO,
+				LPAD(' ', 4*(LEVEL-1)) || title title,
+				content,
+				writeDate,
+				imageFileName,
+				id
+			from board
+			start with parentNO=0
+			connect by prior articleNO=parentNO
+			order siblings by articleNO desc
+		]]>
+	</select>
+</mapper>
